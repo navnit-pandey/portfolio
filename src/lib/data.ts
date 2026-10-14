@@ -4,7 +4,6 @@ export const contactDetails = {
   email: "navneet2624@gmail.com",
   github: "https://github.com/navnit-pandey",
   linkedin: "https://www.linkedin.com/in/navnit-pandey",
-  location: "Phagwara, Punjab, India",
   university: "Lovely Professional University (LPU)",
   degree: "B.Tech in Artificial Intelligence & Machine Learning",
   resumePath: "/Navnit_Pandey_Resume.pdf",

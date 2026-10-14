@@ -1,12 +1,27 @@
 "use client";
 
-import { ArrowRight, Mail, FileText, CheckCircle2, TrendingUp, Layers } from "lucide-react";
+import { useState } from "react";
+import { ArrowRight, Mail, FileText, CheckCircle2, TrendingUp, Layers, Check } from "lucide-react";
 import { GithubIcon, LinkedinIcon } from "@/components/icons";
 import { contactDetails } from "@/lib/data";
 
 export default function Hero() {
+  const [copiedEmail, setCopiedEmail] = useState(false);
+
   const scrollTo = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  const handleEmailClick = () => {
+    if (typeof navigator !== "undefined" && navigator.clipboard) {
+      navigator.clipboard.writeText(contactDetails.email).catch(() => {});
+    }
+    setCopiedEmail(true);
+    setTimeout(() => setCopiedEmail(false), 2500);
+
+    try {
+      window.location.href = `mailto:${contactDetails.email}`;
+    } catch {}
   };
 
   return (
@@ -111,21 +126,30 @@ export default function Hero() {
                 <GithubIcon size={16} className="text-[var(--accent)]" /> GitHub
               </a>
 
-              <a
-                href={`mailto:${contactDetails.email}`}
-                className="btn-secondary"
+              <button
+                onClick={handleEmailClick}
+                className="btn-secondary cursor-pointer"
                 id="hero-cta-email"
                 aria-label={`Email ${contactDetails.email}`}
+                title="Click to copy email & open mail client"
               >
-                <Mail size={16} /> Email
-              </a>
+                {copiedEmail ? (
+                  <>
+                    <Check size={16} className="text-emerald-400" />
+                    <span className="text-emerald-400 font-semibold">Copied!</span>
+                  </>
+                ) : (
+                  <>
+                    <Mail size={16} /> Email
+                  </>
+                )}
+              </button>
             </div>
 
-            {/* Verified Meta Links */}
-            <div className="flex flex-wrap items-center gap-5 pt-2 text-xs sm:text-sm text-slate-400 font-mono">
+            {/* Direct Email Meta Line */}
+            <div className="flex items-center gap-2 pt-2 text-xs sm:text-sm text-slate-300 font-mono">
+              <Mail size={14} className="text-[var(--accent)]" />
               <span>{contactDetails.email}</span>
-              <span className="text-slate-600">·</span>
-              <span>{contactDetails.location}</span>
             </div>
           </div>
 

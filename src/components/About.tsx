@@ -86,12 +86,12 @@ export default function About() {
               <p className="text-xs font-mono uppercase text-slate-400 tracking-wider">
                 Direct Contact
               </p>
-              <p className="text-sm text-slate-200 font-mono">
+              <a
+                href={`mailto:${contactDetails.email}`}
+                className="text-sm text-[var(--accent)] font-mono hover:underline block"
+              >
                 {contactDetails.email}
-              </p>
-              <p className="text-xs text-slate-400">
-                {contactDetails.location}
-              </p>
+              </a>
             </div>
           </div>
         </div>

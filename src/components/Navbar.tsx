@@ -89,11 +89,11 @@ export default function Navbar() {
           {/* Right Action Icons (Resume, GitHub, LinkedIn) */}
           <div className="hidden sm:flex items-center gap-3">
             <a
-              href="https://github.com/navnit-pandey"
+              href="/Navnit_Pandey_Resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
               className="btn-secondary py-2 px-3 text-xs font-mono"
-              aria-label="View Resume / GitHub"
+              aria-label="View Resume / CV"
             >
               <FileText size={14} className="text-[var(--accent)]" />
               <span>Resume</span>
@@ -175,7 +175,7 @@ export default function Navbar() {
                 style={{ borderColor: "var(--border)" }}
               >
                 <a
-                  href="https://github.com/navnit-pandey"
+                  href="/Navnit_Pandey_Resume.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-2 px-4 py-2.5 text-sm font-semibold text-[var(--accent)]"

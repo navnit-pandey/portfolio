@@ -72,7 +72,7 @@ export default function Hero() {
                 Inspect Projects <ArrowRight size={16} />
               </button>
               <a
-                href="https://github.com/navnit-pandey"
+                href="/Navnit_Pandey_Resume.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-secondary"

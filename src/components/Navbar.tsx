@@ -75,9 +75,9 @@ export default function Navbar() {
               <button
                 key={item.label}
                 onClick={() => handleNavClick(item.href)}
-                className={`text-sm font-medium transition-colors cursor-pointer ${
+                className={`nav-link text-sm font-medium transition-colors cursor-pointer ${
                   active === item.href.replace("#", "")
-                    ? "text-[var(--accent)] font-semibold"
+                    ? "active text-[var(--accent)] font-semibold"
                     : "text-slate-300 hover:text-white"
                 }`}
               >
@@ -88,12 +88,14 @@ export default function Navbar() {
 
           {/* Right Action Icons (Resume, GitHub, LinkedIn) */}
           <div className="hidden sm:flex items-center gap-3">
+            {/* TODO: I will add the PDF file myself; until then hide the button or leave a comment. */}
             <a
               href="/Navnit_Pandey_Resume.pdf"
+              download="Navnit_Pandey_Resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
               className="btn-secondary py-2 px-3 text-xs font-mono"
-              aria-label="View Resume / CV"
+              aria-label="Download Resume / CV"
             >
               <FileText size={14} className="text-[var(--accent)]" />
               <span>Resume</span>
@@ -112,7 +114,7 @@ export default function Navbar() {
               <GithubIcon size={16} />
             </a>
             <a
-              href="https://linkedin.com/in/navnit-pandey"
+              href="https://www.linkedin.com/in/navnit-pandey"
               target="_blank"
               rel="noopener noreferrer"
               className="p-2 rounded-xl text-slate-400 hover:text-[#38bdf8] transition-colors"
@@ -135,6 +137,7 @@ export default function Navbar() {
             }}
             onClick={() => setMenuOpen((v) => !v)}
             aria-label={menuOpen ? "Close menu" : "Open menu"}
+            aria-expanded={menuOpen}
           >
             {menuOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
@@ -174,13 +177,15 @@ export default function Navbar() {
                 className="pt-4 mt-2 border-t flex flex-col gap-2"
                 style={{ borderColor: "var(--border)" }}
               >
+                {/* TODO: I will add the PDF file myself; until then hide the button or leave a comment. */}
                 <a
                   href="/Navnit_Pandey_Resume.pdf"
+                  download="Navnit_Pandey_Resume.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-2 px-4 py-2.5 text-sm font-semibold text-[var(--accent)]"
                 >
-                  <FileText size={16} /> View Resume / CV ↗
+                  <FileText size={16} /> Download Resume / CV ↗
                 </a>
                 <a
                   href="https://github.com/navnit-pandey"
@@ -191,7 +196,7 @@ export default function Navbar() {
                   <GithubIcon size={16} /> GitHub Profile ↗
                 </a>
                 <a
-                  href="https://linkedin.com/in/navnit-pandey"
+                  href="https://www.linkedin.com/in/navnit-pandey"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-2 px-4 py-2.5 text-sm font-semibold text-[#38bdf8]"

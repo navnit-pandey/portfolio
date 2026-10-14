@@ -1,19 +1,31 @@
 "use client";
 
 import { useState, FormEvent } from "react";
-import { Mail, MapPin, Send, CheckCircle2, AlertCircle, ArrowUpRight } from "lucide-react";
+import { Mail, MapPin, Send, CheckCircle2, AlertCircle, ArrowUpRight, Copy, Check } from "lucide-react";
 import { GithubIcon, LinkedinIcon } from "@/components/icons";
+import { contactDetails } from "@/lib/data";
 
 type FormState = "idle" | "sending" | "success" | "error";
 
 export default function Contact() {
   const [formState, setFormState] = useState<FormState>("idle");
+  const [copied, setCopied] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     subject: "",
     message: "",
   });
+
+  const handleCopyEmail = async () => {
+    try {
+      await navigator.clipboard.writeText(contactDetails.email);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2500);
+    } catch {
+      // Fallback
+    }
+  };
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -31,13 +43,13 @@ export default function Contact() {
 
     if (!endpoint) {
       setTimeout(() => {
-        window.location.href = `mailto:navnitpandey.tech@gmail.com?subject=${encodeURIComponent(
+        window.location.href = `mailto:${contactDetails.email}?subject=${encodeURIComponent(
           formData.subject || "Portfolio Contact"
         )}&body=${encodeURIComponent(
           `Hi Navnit,\n\n${formData.message}\n\nFrom: ${formData.name} (${formData.email})`
         )}`;
         setFormState("success");
-      }, 600);
+      }, 500);
       return;
     }
 
@@ -65,77 +77,89 @@ export default function Contact() {
       style={{ borderTop: "1px solid var(--border)" }}
     >
       <div className="container-custom">
-        {/* Header with generous spacing */}
-        <div className="max-w-3xl mb-20">
+        {/* Header */}
+        <div className="max-w-3xl mb-16">
           <p className="section-label">Direct Communication</p>
-          <h2
-            className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 tracking-tight text-white"
-          >
-            Let&rsquo;s connect
+          <h2 className="text-3xl sm:text-5xl font-bold mb-4 tracking-tight text-white">
+            Let&rsquo;s Connect
           </h2>
-          <p className="text-base sm:text-lg md:text-xl text-slate-300 leading-relaxed">
-            Whether you&rsquo;d like to talk about machine learning projects, engineering
-            internships, or just want to exchange ideas — my inbox is always open.
+          <p className="text-base sm:text-lg text-slate-300 leading-relaxed">
+            Open to AI/ML and software engineering internships, technical collaborations, and discussion on machine learning systems.
           </p>
         </div>
 
-        {/* 2-Column Layout with generous 16-col gap */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-14 lg:gap-16 items-start">
-          {/* Left Column (5 cols): Spacious Info Blocks */}
-          <div className="lg:col-span-5 space-y-6">
-            {/* GitHub Card */}
-            <a
-              href="https://github.com/navnit-pandey"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="card p-6 sm:p-7 flex items-center justify-between group transition-all"
-            >
-              <div className="flex items-center gap-4">
-                <div
-                  className="w-12 h-12 rounded-2xl flex items-center justify-center flex-shrink-0"
-                  style={{
-                    background: "rgba(163, 230, 53, 0.08)",
-                    border: "1px solid rgba(163, 230, 53, 0.2)",
-                  }}
-                >
-                  <GithubIcon size={22} className="text-[var(--accent)]" />
-                </div>
-                <div>
-                  <p className="text-xs font-mono uppercase text-slate-400 tracking-wider mb-0.5">
-                    GitHub Profile
-                  </p>
-                  <p className="text-sm sm:text-base font-bold text-white group-hover:text-[var(--accent)] transition-colors">
-                    github.com/navnit-pandey
-                  </p>
+        {/* 2-Column Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
+          {/* Left Column (5 cols): Direct Cards with Copy Action */}
+          <div className="lg:col-span-5 space-y-4">
+            {/* Email Card with 1-Click Copy */}
+            <div className="card p-6 flex flex-col justify-between gap-4">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-3.5">
+                  <div
+                    className="w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0"
+                    style={{
+                      background: "rgba(56, 189, 248, 0.1)",
+                      border: "1px solid rgba(56, 189, 248, 0.25)",
+                    }}
+                  >
+                    <Mail size={20} className="text-[#38bdf8]" />
+                  </div>
+                  <div>
+                    <p className="text-xs font-mono uppercase text-slate-400">Direct Email</p>
+                    <p className="text-sm sm:text-base font-bold text-white font-mono mt-0.5">
+                      {contactDetails.email}
+                    </p>
+                  </div>
                 </div>
               </div>
-              <ArrowUpRight
-                size={18}
-                className="text-slate-500 group-hover:text-[var(--accent)] transition-colors"
-              />
-            </a>
+
+              <div className="flex items-center gap-2 pt-2 border-t border-white/10">
+                <a
+                  href={`mailto:${contactDetails.email}`}
+                  className="btn-primary text-xs py-2 px-3.5 flex-1 text-center justify-center"
+                >
+                  <Mail size={14} /> Send Email
+                </a>
+                <button
+                  onClick={handleCopyEmail}
+                  className="btn-secondary text-xs py-2 px-3.5 cursor-pointer flex items-center gap-1.5"
+                  aria-label="Copy email address"
+                >
+                  {copied ? (
+                    <>
+                      <Check size={14} className="text-emerald-400" />
+                      <span className="text-emerald-400">Copied!</span>
+                    </>
+                  ) : (
+                    <>
+                      <Copy size={14} />
+                      <span>Copy</span>
+                    </>
+                  )}
+                </button>
+              </div>
+            </div>
 
             {/* LinkedIn Card */}
             <a
-              href="https://linkedin.com/in/navnit-pandey"
+              href={contactDetails.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className="card p-6 sm:p-7 flex items-center justify-between group transition-all"
+              className="card p-5 flex items-center justify-between group transition-all"
             >
-              <div className="flex items-center gap-4">
+              <div className="flex items-center gap-3.5">
                 <div
-                  className="w-12 h-12 rounded-2xl flex items-center justify-center flex-shrink-0"
+                  className="w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0"
                   style={{
                     background: "rgba(56, 189, 248, 0.08)",
                     border: "1px solid rgba(56, 189, 248, 0.2)",
                   }}
                 >
-                  <LinkedinIcon size={22} className="text-[#38bdf8]" />
+                  <LinkedinIcon size={20} className="text-[#38bdf8]" />
                 </div>
                 <div>
-                  <p className="text-xs font-mono uppercase text-slate-400 tracking-wider mb-0.5">
-                    LinkedIn Profile
-                  </p>
+                  <p className="text-xs font-mono uppercase text-slate-400">LinkedIn Profile</p>
                   <p className="text-sm sm:text-base font-bold text-white group-hover:text-[#38bdf8] transition-colors">
                     linkedin.com/in/navnit-pandey
                   </p>
@@ -147,75 +171,70 @@ export default function Contact() {
               />
             </a>
 
-            {/* Email Card */}
+            {/* GitHub Card */}
             <a
-              href="mailto:navnitpandey.tech@gmail.com"
-              className="card p-7 sm:p-8 flex items-center justify-between group transition-all"
+              href={contactDetails.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="card p-5 flex items-center justify-between group transition-all"
             >
-              <div className="flex items-center gap-5">
+              <div className="flex items-center gap-3.5">
                 <div
-                  className="w-14 h-14 rounded-2xl flex items-center justify-center flex-shrink-0"
+                  className="w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0"
                   style={{
-                    background: "rgba(56, 189, 248, 0.08)",
-                    border: "1px solid rgba(56, 189, 248, 0.2)",
+                    background: "rgba(163, 230, 53, 0.08)",
+                    border: "1px solid rgba(163, 230, 53, 0.2)",
                   }}
                 >
-                  <Mail size={24} className="text-[#38bdf8]" />
+                  <GithubIcon size={20} className="text-[var(--accent)]" />
                 </div>
                 <div>
-                  <p className="text-xs font-mono uppercase text-slate-400 tracking-wider mb-1">
-                    Direct Email
-                  </p>
-                  <p className="text-base sm:text-lg font-bold text-white group-hover:text-[#38bdf8] transition-colors">
-                    navnitpandey.tech@gmail.com
+                  <p className="text-xs font-mono uppercase text-slate-400">GitHub Profile</p>
+                  <p className="text-sm sm:text-base font-bold text-white group-hover:text-[var(--accent)] transition-colors">
+                    github.com/navnit-pandey
                   </p>
                 </div>
               </div>
               <ArrowUpRight
-                size={20}
-                className="text-slate-500 group-hover:text-[#38bdf8] transition-colors"
+                size={18}
+                className="text-slate-500 group-hover:text-[var(--accent)] transition-colors"
               />
             </a>
 
             {/* Location Card */}
-            <div className="card p-7 sm:p-8 flex items-center gap-5">
+            <div className="card p-5 flex items-center gap-3.5">
               <div
-                className="w-14 h-14 rounded-2xl flex items-center justify-center flex-shrink-0"
+                className="w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0"
                 style={{
                   background: "rgba(251, 191, 36, 0.08)",
                   border: "1px solid rgba(251, 191, 36, 0.2)",
                 }}
               >
-                <MapPin size={24} className="text-[#fbbf24]" />
+                <MapPin size={20} className="text-[#fbbf24]" />
               </div>
               <div>
-                <p className="text-xs font-mono uppercase text-slate-400 tracking-wider mb-1">
-                  Location &amp; University
-                </p>
-                <p className="text-base sm:text-lg font-bold text-white">
-                  Phagwara, Punjab, India
-                </p>
-                <p className="text-xs text-slate-400 mt-1">
-                  School of Computer Science &amp; Engineering, LPU
+                <p className="text-xs font-mono uppercase text-slate-400">Location</p>
+                <p className="text-sm sm:text-base font-bold text-white">
+                  {contactDetails.location}
                 </p>
               </div>
             </div>
           </div>
 
-          {/* Right Column (7 cols): Spacious, Uncrowded Form Card */}
+          {/* Right Column (7 cols): Contact Form with Explicit <label> Elements */}
           <div className="lg:col-span-7">
-            <div className="card p-8 sm:p-12 md:p-14">
-              <form onSubmit={handleSubmit} className="space-y-7">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <div className="card p-7 sm:p-10">
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                   <div>
                     <label
-                      htmlFor="name"
-                      className="block text-xs font-mono uppercase tracking-wider text-slate-400 mb-2.5"
+                      htmlFor="contact-name"
+                      className="block text-xs font-mono uppercase tracking-wider text-slate-300 mb-2"
                     >
-                      Your Name
+                      Your Name <span className="text-[var(--accent)]">*</span>
                     </label>
                     <input
-                      id="name"
+                      id="contact-name"
                       name="name"
                       type="text"
                       required
@@ -228,13 +247,13 @@ export default function Contact() {
 
                   <div>
                     <label
-                      htmlFor="email"
-                      className="block text-xs font-mono uppercase tracking-wider text-slate-400 mb-2.5"
+                      htmlFor="contact-email"
+                      className="block text-xs font-mono uppercase tracking-wider text-slate-300 mb-2"
                     >
-                      Email Address
+                      Email Address <span className="text-[var(--accent)]">*</span>
                     </label>
                     <input
-                      id="email"
+                      id="contact-email"
                       name="email"
                       type="email"
                       required
@@ -248,16 +267,16 @@ export default function Contact() {
 
                 <div>
                   <label
-                    htmlFor="subject"
-                    className="block text-xs font-mono uppercase tracking-wider text-slate-400 mb-2.5"
+                    htmlFor="contact-subject"
+                    className="block text-xs font-mono uppercase tracking-wider text-slate-300 mb-2"
                   >
                     Subject
                   </label>
                   <input
-                    id="subject"
+                    id="contact-subject"
                     name="subject"
                     type="text"
-                    placeholder="Project Inquiry / AI Collaboration"
+                    placeholder="AI/ML Internship / Project Collaboration"
                     className="input-field"
                     value={formData.subject}
                     onChange={handleChange}
@@ -266,78 +285,69 @@ export default function Contact() {
 
                 <div>
                   <label
-                    htmlFor="message"
-                    className="block text-xs font-mono uppercase tracking-wider text-slate-400 mb-2.5"
+                    htmlFor="contact-message"
+                    className="block text-xs font-mono uppercase tracking-wider text-slate-300 mb-2"
                   >
-                    Message
+                    Message <span className="text-[var(--accent)]">*</span>
                   </label>
                   <textarea
-                    id="message"
+                    id="contact-message"
                     name="message"
                     required
-                    rows={5}
-                    placeholder="Tell me about what you have in mind..."
+                    rows={4}
+                    placeholder="Tell me about your team, problem, or role..."
                     className="input-field resize-none leading-relaxed"
                     value={formData.message}
                     onChange={handleChange}
                   />
                 </div>
 
-                {/* Status Banners */}
+                {/* Visible Success State */}
                 {formState === "success" && (
                   <div
-                    className="flex items-center gap-3 p-4 rounded-xl text-sm"
+                    className="flex items-center gap-3 p-4 rounded-xl text-xs sm:text-sm text-slate-200"
                     style={{
-                      background: "rgba(163, 230, 53, 0.08)",
-                      border: "1px solid rgba(163, 230, 53, 0.25)",
-                      color: "var(--accent)",
+                      background: "rgba(163, 230, 53, 0.1)",
+                      border: "1px solid rgba(163, 230, 53, 0.3)",
                     }}
                   >
-                    <CheckCircle2 size={18} className="flex-shrink-0" />
-                    <span>
-                      Thank you! Your message is on its way. I&rsquo;ll respond as soon as possible.
-                    </span>
+                    <CheckCircle2 size={18} className="text-[var(--accent)] flex-shrink-0" />
+                    <span>Your message was prepared / sent. I will get back to you promptly!</span>
                   </div>
                 )}
 
+                {/* Visible Error State */}
                 {formState === "error" && (
                   <div
-                    className="flex items-start gap-3 p-4 rounded-xl text-sm"
+                    className="flex items-center gap-3 p-4 rounded-xl text-xs sm:text-sm text-slate-200"
                     style={{
-                      background: "rgba(239, 68, 68, 0.08)",
-                      border: "1px solid rgba(239, 68, 68, 0.25)",
-                      color: "#f87171",
+                      background: "rgba(239, 68, 68, 0.1)",
+                      border: "1px solid rgba(239, 68, 68, 0.3)",
                     }}
                   >
-                    <AlertCircle size={18} className="flex-shrink-0 mt-0.5" />
+                    <AlertCircle size={18} className="text-red-400 flex-shrink-0" />
                     <span>
-                      Unable to send automatically. Please email me directly at{" "}
-                      <a
-                        href="mailto:navnitpandey.tech@gmail.com"
-                        className="underline font-semibold"
-                      >
-                        navnitpandey.tech@gmail.com
+                      Could not send automatically. Please reach out directly at{" "}
+                      <a href={`mailto:${contactDetails.email}`} className="text-white underline">
+                        {contactDetails.email}
                       </a>
                     </span>
                   </div>
                 )}
 
-                {/* Refined CTA Button */}
-                <div className="pt-2">
-                  <button
-                    type="submit"
-                    disabled={formState === "sending"}
-                    className="btn-primary"
-                  >
-                    {formState === "sending" ? (
-                      <>Sending…</>
-                    ) : (
-                      <>
-                        <Send size={16} /> Send Message
-                      </>
-                    )}
-                  </button>
-                </div>
+                <button
+                  type="submit"
+                  disabled={formState === "sending"}
+                  className="btn-primary w-full text-sm font-semibold justify-center py-3"
+                >
+                  {formState === "sending" ? (
+                    "Sending Message..."
+                  ) : (
+                    <>
+                      <Send size={15} /> Send Message
+                    </>
+                  )}
+                </button>
               </form>
             </div>
           </div>

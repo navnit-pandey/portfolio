@@ -15,6 +15,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://portfolio-rho-three-ak8w0c2n2a.vercel.app"),
   title: "Navnit Pandey — AI/ML Engineer Portfolio",
   description:
     "Portfolio of Navnit Pandey, a B.Tech AI/ML student at Lovely Professional University who optimized an AQI forecasting system from R² 0.65 to 0.81 and deployed it as a live REST API. Seeking Summer 2027 internships.",
@@ -37,12 +38,21 @@ export const metadata: Metadata = {
     type: "website",
     url: "https://portfolio-rho-three-ak8w0c2n2a.vercel.app",
     siteName: "Navnit Pandey Portfolio",
+    images: [
+      {
+        url: "/og-image.png", // TODO: [og:image path] - upload custom 1200x630 preview image to /public/og-image.png
+        width: 1200,
+        height: 630,
+        alt: "Navnit Pandey — AI/ML Engineer Portfolio",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Navnit Pandey — AI/ML Engineer Portfolio",
     description:
       "B.Tech AI/ML student at LPU. AirQ Predict (R² 0.81), OS Resource Allocator, and embedded hardware builds.",
+    images: ["/og-image.png"], // TODO: [og:image path] - upload custom preview image to /public/og-image.png
   },
   robots: {
     index: true,

@@ -33,7 +33,7 @@ export default function Footer() {
               <GithubIcon size={19} />
             </a>
             <a
-              href="https://linkedin.com/in/navnit-pandey"
+              href="https://www.linkedin.com/in/navnit-pandey"
               target="_blank"
               rel="noopener noreferrer"
               className="text-slate-400 hover:text-[#38bdf8] transition-colors"

@@ -17,7 +17,7 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   title: "Navnit Pandey — AI/ML Engineer Portfolio",
   description:
-    "Portfolio of Navnit Pandey, a B.Tech AI/ML student at LPU who builds intelligent systems — from AQI prediction models and adaptive resource managers to gesture-controlled hardware.",
+    "Portfolio of Navnit Pandey, a B.Tech AI/ML student at Lovely Professional University who optimized an AQI forecasting system from R² 0.65 to 0.81 and deployed it as a live REST API. Seeking Summer 2027 internships.",
   keywords: [
     "Navnit Pandey",
     "AI ML engineer",
@@ -26,21 +26,23 @@ export const metadata: Metadata = {
     "Python",
     "scikit-learn",
     "AQI prediction",
+    "Lovely Professional University",
     "LPU",
   ],
   authors: [{ name: "Navnit Pandey", url: "https://github.com/navnit-pandey" }],
   openGraph: {
     title: "Navnit Pandey — AI/ML Engineer Portfolio",
     description:
-      "Building intelligent systems and solving real problems. AI/ML student at LPU, aspiring engineer.",
+      "B.Tech AI/ML student at LPU. AirQ Predict (R² 0.81), OS Resource Allocator, and embedded hardware builds.",
     type: "website",
+    url: "https://portfolio-rho-three-ak8w0c2n2a.vercel.app",
     siteName: "Navnit Pandey Portfolio",
   },
   twitter: {
     card: "summary_large_image",
     title: "Navnit Pandey — AI/ML Engineer Portfolio",
     description:
-      "Building intelligent systems and solving real problems. AI/ML student at LPU.",
+      "B.Tech AI/ML student at LPU. AirQ Predict (R² 0.81), OS Resource Allocator, and embedded hardware builds.",
   },
   robots: {
     index: true,

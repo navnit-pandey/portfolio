@@ -2,7 +2,7 @@
 
 import { useState, FormEvent } from "react";
 import { Mail, MapPin, Send, CheckCircle2, AlertCircle, ArrowUpRight } from "lucide-react";
-import { GithubIcon } from "@/components/icons";
+import { GithubIcon, LinkedinIcon } from "@/components/icons";
 
 type FormState = "idle" | "sending" | "success" | "error";
 
@@ -88,30 +88,62 @@ export default function Contact() {
               href="https://github.com/navnit-pandey"
               target="_blank"
               rel="noopener noreferrer"
-              className="card p-7 sm:p-8 flex items-center justify-between group transition-all"
+              className="card p-6 sm:p-7 flex items-center justify-between group transition-all"
             >
-              <div className="flex items-center gap-5">
+              <div className="flex items-center gap-4">
                 <div
-                  className="w-14 h-14 rounded-2xl flex items-center justify-center flex-shrink-0"
+                  className="w-12 h-12 rounded-2xl flex items-center justify-center flex-shrink-0"
                   style={{
                     background: "rgba(163, 230, 53, 0.08)",
                     border: "1px solid rgba(163, 230, 53, 0.2)",
                   }}
                 >
-                  <GithubIcon size={24} className="text-[var(--accent)]" />
+                  <GithubIcon size={22} className="text-[var(--accent)]" />
                 </div>
                 <div>
-                  <p className="text-xs font-mono uppercase text-slate-400 tracking-wider mb-1">
+                  <p className="text-xs font-mono uppercase text-slate-400 tracking-wider mb-0.5">
                     GitHub Profile
                   </p>
-                  <p className="text-base sm:text-lg font-bold text-white group-hover:text-[var(--accent)] transition-colors">
+                  <p className="text-sm sm:text-base font-bold text-white group-hover:text-[var(--accent)] transition-colors">
                     github.com/navnit-pandey
                   </p>
                 </div>
               </div>
               <ArrowUpRight
-                size={20}
+                size={18}
                 className="text-slate-500 group-hover:text-[var(--accent)] transition-colors"
+              />
+            </a>
+
+            {/* LinkedIn Card */}
+            <a
+              href="https://linkedin.com/in/navnit-pandey"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="card p-6 sm:p-7 flex items-center justify-between group transition-all"
+            >
+              <div className="flex items-center gap-4">
+                <div
+                  className="w-12 h-12 rounded-2xl flex items-center justify-center flex-shrink-0"
+                  style={{
+                    background: "rgba(56, 189, 248, 0.08)",
+                    border: "1px solid rgba(56, 189, 248, 0.2)",
+                  }}
+                >
+                  <LinkedinIcon size={22} className="text-[#38bdf8]" />
+                </div>
+                <div>
+                  <p className="text-xs font-mono uppercase text-slate-400 tracking-wider mb-0.5">
+                    LinkedIn Profile
+                  </p>
+                  <p className="text-sm sm:text-base font-bold text-white group-hover:text-[#38bdf8] transition-colors">
+                    linkedin.com/in/navnit-pandey
+                  </p>
+                </div>
+              </div>
+              <ArrowUpRight
+                size={18}
+                className="text-slate-500 group-hover:text-[#38bdf8] transition-colors"
               />
             </a>
 

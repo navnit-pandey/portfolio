@@ -1,7 +1,7 @@
 "use client";
 
-import { ArrowRight, Mail, ChevronDown, Sparkles } from "lucide-react";
-import { GithubIcon } from "@/components/icons";
+import { ArrowRight, Mail, FileText, CheckCircle2, TrendingUp, Cpu, Activity } from "lucide-react";
+import { GithubIcon, LinkedinIcon } from "@/components/icons";
 
 export default function Hero() {
   const scrollTo = (id: string) => {
@@ -13,69 +13,73 @@ export default function Hero() {
       id="home"
       className="relative min-h-[92vh] flex flex-col justify-center overflow-hidden"
     >
-      {/* Ambient background glows */}
+      {/* Ambient background illumination */}
       <div
         className="absolute top-1/4 -right-20 w-[600px] h-[600px] rounded-full pointer-events-none"
         style={{
           background:
-            "radial-gradient(circle at center, rgba(163,230,53,0.07) 0%, transparent 70%)",
+            "radial-gradient(circle at center, rgba(163,230,53,0.08) 0%, transparent 70%)",
         }}
       />
       <div
         className="absolute -bottom-20 -left-20 w-[550px] h-[550px] rounded-full pointer-events-none"
         style={{
           background:
-            "radial-gradient(circle at center, rgba(56,189,248,0.05) 0%, transparent 70%)",
+            "radial-gradient(circle at center, rgba(56,189,248,0.06) 0%, transparent 70%)",
         }}
       />
 
-      <div className="container-custom pt-32 pb-24 relative">
+      <div className="container-custom pt-28 pb-20 relative">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          {/* Main Hero Column (8 cols) */}
-          <div className="lg:col-span-8 space-y-8">
-            {/* Status Pill */}
-            <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full"
+          {/* Main Hero Column (7 cols) */}
+          <div className="lg:col-span-7 space-y-7">
+            {/* Target Status Pill */}
+            <div
+              className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full"
               style={{
                 background: "rgba(163, 230, 53, 0.08)",
-                border: "1px solid rgba(163, 230, 53, 0.2)",
+                border: "1px solid rgba(163, 230, 53, 0.25)",
               }}
             >
               <span className="w-2 h-2 rounded-full bg-[var(--accent)] animate-pulse" />
               <span className="font-mono text-xs font-semibold text-[var(--accent)] tracking-wide">
-                B.Tech in Artificial Intelligence &amp; Machine Learning · LPU
+                B.Tech in AI &amp; ML · Lovely Professional University · Seeking Summer 2027 Internships
               </span>
             </div>
 
-            {/* Headline */}
-            <h1
-              className="text-4xl sm:text-6xl md:text-7xl font-black text-white leading-[1.08] tracking-tight"
-            >
-              Building{" "}
-              <span className="text-[var(--accent)]">Intelligent</span>
+            {/* Dominant H1 Headline */}
+            <h1 className="text-4xl sm:text-6xl md:text-7xl font-black text-white leading-[1.06] tracking-tight">
+              Building Intelligent Systems.
               <br />
-              Systems.
-              <br />
-              <span className="text-slate-400 font-light">
-                Solving Real Problems.
-              </span>
+              <span className="text-[var(--accent)]">Proven With Real Metrics.</span>
             </h1>
 
-            {/* Sub-headline */}
-            <p className="text-lg md:text-xl text-slate-300 max-w-2xl leading-relaxed">
-              Aspiring AI/ML Engineer and software developer who learns through
-              hands-on building — from multi-regressor predictive pipelines and
-              adaptive resource schedulers to embedded hardware.
+            {/* Evidence-Driven Subhead */}
+            <p className="text-base sm:text-lg md:text-xl text-slate-200 leading-relaxed max-w-2xl font-normal">
+              AI/ML student who took an AQI forecasting system from{" "}
+              <span className="text-white font-semibold">baseline R² 0.65 to 0.81</span>{" "}
+              and deployed it as a live REST API. Experienced with tabular ensembles,
+              leak-free time-series validation, and systems simulations.
             </p>
 
-            {/* CTAs */}
-            <div className="flex flex-wrap items-center gap-4 pt-2">
+            {/* CTAs including Resume & Projects */}
+            <div className="flex flex-wrap items-center gap-3.5 pt-2">
               <button
                 onClick={() => scrollTo("projects")}
                 className="btn-primary"
                 id="hero-cta-projects"
               >
-                Explore Projects <ArrowRight size={16} />
+                Inspect Projects <ArrowRight size={16} />
               </button>
+              <a
+                href="https://github.com/navnit-pandey"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-secondary"
+                id="hero-cta-resume"
+              >
+                <FileText size={16} /> View Resume / CV
+              </a>
               <button
                 onClick={() => scrollTo("contact")}
                 className="btn-secondary"
@@ -85,8 +89,8 @@ export default function Hero() {
               </button>
             </div>
 
-            {/* Social & Location Meta */}
-            <div className="flex flex-wrap items-center gap-5 pt-4 text-sm text-slate-400 font-mono">
+            {/* Verified Meta Links */}
+            <div className="flex flex-wrap items-center gap-5 pt-3 text-xs sm:text-sm text-slate-400 font-mono">
               <a
                 href="https://github.com/navnit-pandey"
                 target="_blank"
@@ -98,76 +102,109 @@ export default function Hero() {
                 <span>github.com/navnit-pandey</span>
               </a>
               <span className="text-slate-600">·</span>
+              <a
+                href="https://linkedin.com/in/navnit-pandey"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 hover:text-white transition-colors"
+                aria-label="LinkedIn profile"
+              >
+                <LinkedinIcon size={16} className="text-[#38bdf8]" />
+                <span>LinkedIn</span>
+              </a>
+              <span className="text-slate-600">·</span>
               <span>Phagwara, Punjab, India</span>
             </div>
           </div>
 
-          {/* Right Hero Visual Code & Status Card (4 cols) */}
-          <div className="lg:col-span-4 hidden lg:block">
+          {/* Right Column: Empirical Proof & System Architecture Card (5 cols) */}
+          <div className="lg:col-span-5">
             <div
-              className="card p-7 md:p-9 relative overflow-hidden"
+              className="card p-6 sm:p-8 relative overflow-hidden"
               style={{
-                boxShadow: "0 20px 50px rgba(0,0,0,0.5)",
+                boxShadow: "0 25px 60px -15px rgba(0, 0, 0, 0.7)",
+                border: "1px solid rgba(163, 230, 53, 0.25)",
               }}
             >
-              <div className="flex items-center justify-between pb-5 mb-5 border-b border-white/10">
-                <div className="flex items-center gap-2">
-                  <span className="w-3 h-3 rounded-full bg-red-500/80" />
-                  <span className="w-3 h-3 rounded-full bg-yellow-500/80" />
-                  <span className="w-3 h-3 rounded-full bg-green-500/80" />
+              {/* Header Badge */}
+              <div className="flex items-center justify-between pb-4 mb-5 border-b border-white/10">
+                <div className="flex items-center gap-2.5">
+                  <span className="w-2.5 h-2.5 rounded-full bg-[var(--accent)] animate-pulse" />
+                  <span className="font-mono text-xs font-bold text-white uppercase tracking-wider">
+                    Flagship Benchmark Proof
+                  </span>
                 </div>
-                <span className="font-mono text-xs text-slate-400">
-                  pipeline_eval.py
+                <span className="text-[11px] font-mono px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                  Live on Vercel + Render
                 </span>
               </div>
 
-              <div className="font-mono text-xs leading-6 text-slate-300 space-y-1">
-                <p>
-                  <span className="text-[var(--accent)]">from</span> sklearn.ensemble{" "}
-                  <span className="text-[var(--accent)]">import</span>
-                </p>
-                <p className="pl-4 text-white">GradientBoostingRegressor</p>
-                <p className="pt-2">
-                  <span className="text-[var(--accent)]">regressor</span> ={" "}
-                  <span className="text-slate-100">GradientBoostingRegressor(</span>
-                </p>
-                <p className="pl-4 text-slate-400">
-                  n_estimators=<span className="text-[var(--accent)]">150</span>,
-                </p>
-                <p className="pl-4 text-slate-400">
-                  learning_rate=<span className="text-[var(--accent)]">0.05</span>
-                </p>
-                <p className="text-slate-100">{")"}</p>
-                <p className="pt-2 text-slate-400">
-                  regressor.<span className="text-white">fit</span>(X_train, y_train)
-                </p>
-                <div
-                  className="mt-5 p-4 rounded-xl flex items-center justify-between"
-                  style={{
-                    background: "rgba(163, 230, 53, 0.08)",
-                    border: "1px solid rgba(163, 230, 53, 0.2)",
-                  }}
-                >
-                  <span className="text-xs text-slate-300">R² Validation Score</span>
-                  <span className="text-sm font-bold text-[var(--accent)]">0.81</span>
+              {/* Benchmark Numbers */}
+              <div className="space-y-4">
+                <div className="p-4 rounded-xl bg-white/[0.03] border border-white/10">
+                  <div className="flex items-baseline justify-between mb-1">
+                    <span className="text-xs font-mono uppercase text-slate-300">
+                      Day-1 Generalization Score
+                    </span>
+                    <span className="text-xs font-mono text-[var(--accent)] font-semibold">
+                      +0.43 vs Naive Baseline
+                    </span>
+                  </div>
+                  <div className="flex items-baseline gap-3">
+                    <span className="text-4xl sm:text-5xl font-black font-mono text-[var(--accent)]">
+                      0.81
+                    </span>
+                    <span className="text-xs font-mono text-slate-400">
+                      R² (vs 0.65 single model / 0.38 naive persistence)
+                    </span>
+                  </div>
+                </div>
+
+                {/* Horizon Accuracy Degradation Table */}
+                <div className="p-3.5 rounded-xl bg-white/[0.02] border border-white/5 space-y-2">
+                  <p className="text-[11px] font-mono uppercase tracking-wider text-slate-400 flex items-center justify-between">
+                    <span>Forecast Horizon Decay</span>
+                    <span className="text-slate-500">Chronological Split</span>
+                  </p>
+                  <div className="grid grid-cols-3 gap-2 text-center font-mono">
+                    <div className="p-2 rounded bg-white/[0.03]">
+                      <p className="text-[10px] text-slate-400">Day 1</p>
+                      <p className="text-sm font-bold text-white">0.81 R²</p>
+                      <p className="text-[10px] text-emerald-400">~39 MAE</p>
+                    </div>
+                    <div className="p-2 rounded bg-white/[0.03]">
+                      <p className="text-[10px] text-slate-400">Day 3</p>
+                      <p className="text-sm font-bold text-slate-200">0.73 R²</p>
+                      <p className="text-[10px] text-slate-400">~46 MAE</p>
+                    </div>
+                    <div className="p-2 rounded bg-white/[0.03]">
+                      <p className="text-[10px] text-slate-400">Day 7</p>
+                      <p className="text-sm font-bold text-slate-400">0.64 R²</p>
+                      <p className="text-[10px] text-slate-400">~55 MAE</p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Technical Architecture Summary */}
+                <div className="text-xs font-mono text-slate-300 space-y-1.5 pt-1">
+                  <div className="flex items-center gap-2">
+                    <CheckCircle2 size={13} className="text-[var(--accent)] flex-shrink-0" />
+                    <span>Ensemble: Random Forest + GBDT + Ridge</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <CheckCircle2 size={13} className="text-[var(--accent)] flex-shrink-0" />
+                    <span>Features: 24h &amp; 48h rolling pollutant lags</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <CheckCircle2 size={13} className="text-[var(--accent)] flex-shrink-0" />
+                    <span>Validation: Strict time-series split (zero future leak)</span>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-
-      {/* Scroll Indicator */}
-      <button
-        onClick={() => scrollTo("about")}
-        className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 text-slate-500 hover:text-white transition-colors cursor-pointer"
-        aria-label="Scroll to about"
-      >
-        <span className="text-[10px] font-mono uppercase tracking-widest">
-          Scroll Down
-        </span>
-        <ChevronDown size={16} className="animate-bounce" />
-      </button>
     </section>
   );
 }

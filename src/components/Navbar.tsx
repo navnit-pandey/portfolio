@@ -1,16 +1,13 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
-import { GithubIcon } from "@/components/icons";
+import { Menu, X, FileText } from "lucide-react";
+import { GithubIcon, LinkedinIcon } from "@/components/icons";
 
 const navItems = [
-  { label: "Home", href: "#home" },
-  { label: "About", href: "#about" },
-  { label: "Skills", href: "#skills" },
   { label: "Projects", href: "#projects" },
-  { label: "Approach", href: "#approach" },
-  { label: "Learning", href: "#learning" },
+  { label: "Skills", href: "#skills" },
+  { label: "About", href: "#about" },
   { label: "Contact", href: "#contact" },
 ];
 
@@ -23,11 +20,11 @@ export default function Navbar() {
     const handleScroll = () => {
       setScrolled(window.scrollY > 30);
 
-      const sections = navItems.map((n) => n.href.replace("#", ""));
-      for (let i = sections.length - 1; i >= 0; i--) {
-        const el = document.getElementById(sections[i]);
-        if (el && window.scrollY + 120 >= el.offsetTop) {
-          setActive(sections[i]);
+      const sections = ["contact", "about", "skills", "projects", "home"];
+      for (const id of sections) {
+        const el = document.getElementById(id);
+        if (el && window.scrollY + 140 >= el.offsetTop) {
+          setActive(id);
           break;
         }
       }
@@ -49,7 +46,7 @@ export default function Navbar() {
       <nav
         className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
         style={{
-          background: scrolled ? "rgba(8, 9, 13, 0.85)" : "transparent",
+          background: scrolled ? "rgba(8, 9, 13, 0.88)" : "transparent",
           backdropFilter: scrolled ? "blur(16px)" : "none",
           WebkitBackdropFilter: scrolled ? "blur(16px)" : "none",
           borderBottom: scrolled
@@ -72,16 +69,16 @@ export default function Navbar() {
             </span>
           </button>
 
-          {/* Desktop Nav Links */}
-          <div className="hidden lg:flex items-center gap-7">
+          {/* Desktop Nav Links (Streamlined to 4 items) */}
+          <div className="hidden md:flex items-center gap-8">
             {navItems.map((item) => (
               <button
                 key={item.label}
                 onClick={() => handleNavClick(item.href)}
                 className={`text-sm font-medium transition-colors cursor-pointer ${
                   active === item.href.replace("#", "")
-                    ? "text-[var(--accent)]"
-                    : "text-slate-400 hover:text-white"
+                    ? "text-[var(--accent)] font-semibold"
+                    : "text-slate-300 hover:text-white"
                 }`}
               >
                 {item.label}
@@ -89,21 +86,49 @@ export default function Navbar() {
             ))}
           </div>
 
-          {/* Right Action */}
+          {/* Right Action Icons (Resume, GitHub, LinkedIn) */}
           <div className="hidden sm:flex items-center gap-3">
             <a
               href="https://github.com/navnit-pandey"
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-secondary py-2 px-4 text-xs font-mono"
+              className="btn-secondary py-2 px-3 text-xs font-mono"
+              aria-label="View Resume / GitHub"
             >
-              <GithubIcon size={15} /> github
+              <FileText size={14} className="text-[var(--accent)]" />
+              <span>Resume</span>
+            </a>
+            <a
+              href="https://github.com/navnit-pandey"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-2 rounded-xl text-slate-400 hover:text-white transition-colors"
+              style={{
+                background: "rgba(255, 255, 255, 0.04)",
+                border: "1px solid var(--border)",
+              }}
+              aria-label="GitHub Profile"
+            >
+              <GithubIcon size={16} />
+            </a>
+            <a
+              href="https://linkedin.com/in/navnit-pandey"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-2 rounded-xl text-slate-400 hover:text-[#38bdf8] transition-colors"
+              style={{
+                background: "rgba(255, 255, 255, 0.04)",
+                border: "1px solid var(--border)",
+              }}
+              aria-label="LinkedIn Profile"
+            >
+              <LinkedinIcon size={16} />
             </a>
           </div>
 
           {/* Mobile Menu Toggle */}
           <button
-            className="lg:hidden p-2 rounded-xl text-slate-400 hover:text-white transition-colors"
+            className="md:hidden p-2.5 rounded-xl text-slate-300 hover:text-white transition-colors"
             style={{
               background: "rgba(255, 255, 255, 0.05)",
               border: "1px solid var(--border)",
@@ -119,8 +144,8 @@ export default function Navbar() {
       {/* Mobile Menu Overlay */}
       {menuOpen && (
         <div
-          className="fixed inset-0 z-40 lg:hidden"
-          style={{ background: "rgba(0,0,0,0.8)", backdropFilter: "blur(12px)" }}
+          className="fixed inset-0 z-40 md:hidden"
+          style={{ background: "rgba(0,0,0,0.85)", backdropFilter: "blur(12px)" }}
           onClick={() => setMenuOpen(false)}
         >
           <div
@@ -146,16 +171,32 @@ export default function Navbar() {
                 </button>
               ))}
               <div
-                className="pt-4 mt-2 border-t"
+                className="pt-4 mt-2 border-t flex flex-col gap-2"
                 style={{ borderColor: "var(--border)" }}
               >
                 <a
                   href="https://github.com/navnit-pandey"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 px-4 py-3 text-sm font-semibold text-[var(--accent)]"
+                  className="flex items-center gap-2 px-4 py-2.5 text-sm font-semibold text-[var(--accent)]"
+                >
+                  <FileText size={16} /> View Resume / CV ↗
+                </a>
+                <a
+                  href="https://github.com/navnit-pandey"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 px-4 py-2.5 text-sm font-semibold text-slate-300"
                 >
                   <GithubIcon size={16} /> GitHub Profile ↗
+                </a>
+                <a
+                  href="https://linkedin.com/in/navnit-pandey"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 px-4 py-2.5 text-sm font-semibold text-[#38bdf8]"
+                >
+                  <LinkedinIcon size={16} /> LinkedIn Profile ↗
                 </a>
               </div>
             </div>

@@ -49,9 +49,6 @@ export default function Hero() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           {/* Main Hero Column (7 cols) */}
           <div className="lg:col-span-7 space-y-6">
-            {/* Target Status / Availability Pill */}
-            {/* TODO: [role type, graduation year] - element hidden until user specifies role type and graduation year */}
-            {/*
             <div
               className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full"
               style={{
@@ -61,26 +58,21 @@ export default function Hero() {
             >
               <span className="w-2 h-2 rounded-full bg-[var(--accent)] animate-pulse" />
               <span className="font-mono text-xs font-semibold text-[var(--accent)] tracking-wide">
-                TODO [role type, graduation year]
+                B.Tech AI &amp; ML · Open to Internships
               </span>
             </div>
-            */}
 
             {/* Dominant Headline */}
             <h1 className="text-4xl sm:text-6xl md:text-7xl font-black text-white leading-[1.06] tracking-tight">
               Building Intelligent Systems.
               <br />
-              <span className="text-[var(--accent)]">Proven With Real Metrics.</span>
+              <span className="text-[var(--accent)]">Evaluated With Real Metrics.</span>
             </h1>
 
             {/* Exact Proof Line under headline */}
             <p className="text-base sm:text-lg md:text-xl text-slate-200 leading-relaxed max-w-2xl font-normal">
               Built and deployed an AQI forecasting system: 4-model ensemble, R² 0.81
-              (Day 1) on a time-based Delhi hold-out vs 0.38 for a naive baseline.
-              <span className="block text-xs font-mono text-slate-400 mt-1">
-                {/* TODO: confirm numbers after re-measurement, see section 3. */}
-                (TODO: confirm numbers after re-measurement, see section 3.)
-              </span>
+              (Day 1) on a time-based Delhi hold-out vs 0.38 for a naive persistence baseline.
             </p>
 
             {/* Buttons: Resume, LinkedIn, GitHub, Email */}
@@ -94,7 +86,6 @@ export default function Hero() {
               </button>
 
               {/* Resume Button with download attribute */}
-              {/* TODO: I will add the PDF file myself; until then hide the button or leave a comment. */}
               <a
                 href={contactDetails.resumePath}
                 download="Navnit_Pandey_Resume.pdf"

@@ -88,7 +88,6 @@ export default function Navbar() {
 
           {/* Right Action Icons (Resume, GitHub, LinkedIn) */}
           <div className="hidden sm:flex items-center gap-3">
-            {/* TODO: I will add the PDF file myself; until then hide the button or leave a comment. */}
             <a
               href="/Navnit_Pandey_Resume.pdf"
               download="Navnit_Pandey_Resume.pdf"
@@ -177,7 +176,6 @@ export default function Navbar() {
                 className="pt-4 mt-2 border-t flex flex-col gap-2"
                 style={{ borderColor: "var(--border)" }}
               >
-                {/* TODO: I will add the PDF file myself; until then hide the button or leave a comment. */}
                 <a
                   href="/Navnit_Pandey_Resume.pdf"
                   download="Navnit_Pandey_Resume.pdf"

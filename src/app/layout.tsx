@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     siteName: "Navnit Pandey Portfolio",
     images: [
       {
-        url: "/og-image.png", // TODO: [og:image path] - upload custom 1200x630 preview image to /public/og-image.png
+        url: "/og-image.png",
         width: 1200,
         height: 630,
         alt: "Navnit Pandey — AI/ML Engineer Portfolio",
@@ -52,7 +52,7 @@ export const metadata: Metadata = {
     title: "Navnit Pandey — AI/ML Engineer Portfolio",
     description:
       "B.Tech AI/ML student at LPU. AirQ Predict (R² 0.81), OS Resource Allocator, and embedded hardware builds.",
-    images: ["/og-image.png"], // TODO: [og:image path] - upload custom preview image to /public/og-image.png
+    images: ["/og-image.png"],
   },
   robots: {
     index: true,

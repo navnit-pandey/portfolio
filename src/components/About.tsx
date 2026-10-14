@@ -20,14 +20,13 @@ export default function About() {
               className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight text-white"
               style={{ letterSpacing: "-0.025em" }}
             >
-              Engineering student specializing in{" "}
+              Engineering student specializing in&nbsp;
               <span className="text-[var(--accent)]">Artificial Intelligence &amp; ML</span>.
             </h2>
 
             <div className="space-y-4 text-base sm:text-lg leading-relaxed text-slate-300">
               <p>
                 I am an engineering undergraduate pursuing a B.Tech in Artificial Intelligence &amp; Machine Learning at Lovely Professional University (LPU).
-                {/* TODO: confirm exact graduation year & target role */}
               </p>
               <p>
                 My focus is building verifiable end-to-end systems — taking noisy multi-sensor and atmospheric pollutant streams, engineering sliding lag features, validating on leak-free chronological holdout sets, and serving predictions through lightweight REST APIs.
@@ -43,7 +42,7 @@ export default function About() {
                 <span className="text-xs font-mono uppercase text-slate-400">Target Role</span>
                 <p className="text-sm font-bold text-white mt-1">AI/ML &amp; Software Engineering Intern</p>
                 <p className="text-xs font-mono text-[var(--accent)] mt-0.5">
-                  Available for Internships {/* TODO: specify exact availability window */}
+                  Available for Internships
                 </p>
               </div>
               <div className="p-4 rounded-xl bg-white/[0.03] border border-white/10">

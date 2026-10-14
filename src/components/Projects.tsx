@@ -398,9 +398,9 @@ export default function Projects() {
                       <p className="text-[10px] text-slate-400">~46 MAE</p>
                     </div>
                     <div className="p-2 rounded bg-white/[0.03] border border-white/5">
-                      <p className="text-[10px] text-slate-400">Day 7</p>
-                      <p className="text-xs font-bold text-slate-400">0.64 R²</p>
-                      <p className="text-[10px] text-slate-400">~55 MAE</p>
+                      <p className="text-[10px] text-slate-400">Day 5</p>
+                      <p className="text-xs font-bold text-slate-400">0.67 R²</p>
+                      <p className="text-[10px] text-slate-400">~52 MAE</p>
                     </div>
                   </div>
                 </div>

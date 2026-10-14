@@ -6,9 +6,9 @@ export const projects = [
     shortTitle: "AirQ Predict",
     category: "ML / Full-Stack",
     featured: true,
-    tagline: "End-to-end multi-regressor pipeline predicting 7-day air quality with live REST API.",
+    tagline: "End-to-end multi-regressor pipeline predicting 5-day air quality with live REST API.",
     description:
-      "A production-grade machine learning system that ingests atmospheric pollutant streams (PM2.5, PM10, NO₂, SO₂, CO, O₃), computes US EPA standard index breakpoints, and forecasts 7-day AQI trends using an ensemble of Scikit-learn regressors. Deployed with a Flask REST API backend on Render and a Next.js (TypeScript) dashboard on Vercel.",
+      "A production-grade machine learning system that ingests atmospheric pollutant streams (PM2.5, PM10, NO₂, SO₂, CO, O₃), computes US EPA standard index breakpoints, and forecasts 5-day AQI trends using an ensemble of Scikit-learn regressors. Deployed with a Flask REST API backend on Render and a Next.js (TypeScript) dashboard on Vercel.",
     problem:
       "Public air quality monitoring platforms rarely provide localized multi-day predictive horizons. Naive prediction baselines (assuming tomorrow's AQI equals today's) fail dramatically during seasonal weather shifts (baseline R² ~0.38). The goal was to build a verifiable, leak-free predictive pipeline that outperforms baseline heuristics on real held-out data.",
     approach: [
@@ -36,8 +36,8 @@ export const projects = [
       },
       {
         label: "Forecast Degradation",
-        value: "Day 1: 0.81 → Day 7: 0.64",
-        note: "Empirical horizon decay: Day 1 (0.81 R²) | Day 3 (0.73 R²) | Day 7 (0.64 R²)",
+        value: "Day 1: 0.81 → Day 5: 0.67",
+        note: "Empirical horizon decay: Day 1 (0.81 R²) | Day 3 (0.73 R²) | Day 5 (0.67 R²)",
       },
     ],
     techStack: [

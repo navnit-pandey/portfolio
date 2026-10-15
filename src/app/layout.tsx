@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://portfolio-rho-three-ak8w0c2n2a.vercel.app"),
   title: "Navnit Pandey — AI/ML Engineer Portfolio",
   description:
-    "Portfolio of Navnit Pandey, a B.Tech AI/ML student at Lovely Professional University who optimized an AQI forecasting system from R² 0.65 to 0.81 and deployed it as a live REST API. Seeking Summer 2027 internships.",
+    "Portfolio of Navnit Pandey, a B.Tech AI/ML student at Lovely Professional University who optimized an AQI forecasting system from R² 0.65 to 0.81 and deployed it as a live REST API. Seeking Summer 2028 internships.",
   keywords: [
     "Navnit Pandey",
     "AI ML engineer",

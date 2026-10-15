@@ -1,27 +1,12 @@
 "use client";
 
-import { useState } from "react";
-import { ArrowRight, Mail, FileText, CheckCircle2, TrendingUp, Layers, Check } from "lucide-react";
+import { ArrowRight, FileText } from "lucide-react";
 import { GithubIcon, LinkedinIcon } from "@/components/icons";
 import { contactDetails } from "@/lib/data";
 
 export default function Hero() {
-  const [copiedEmail, setCopiedEmail] = useState(false);
-
   const scrollTo = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
-  };
-
-  const handleEmailClick = () => {
-    if (typeof navigator !== "undefined" && navigator.clipboard) {
-      navigator.clipboard.writeText(contactDetails.email).catch(() => {});
-    }
-    setCopiedEmail(true);
-    setTimeout(() => setCopiedEmail(false), 2500);
-
-    try {
-      window.location.href = `mailto:${contactDetails.email}`;
-    } catch {}
   };
 
   return (
@@ -58,7 +43,7 @@ export default function Hero() {
             >
               <span className="w-2 h-2 rounded-full bg-[var(--accent)] animate-pulse" />
               <span className="font-mono text-xs font-semibold text-[var(--accent)] tracking-wide">
-                B.Tech AI &amp; ML · Open to Internships
+                Navnit Pandey · B.Tech AI &amp; ML ’28 · Open to Internships
               </span>
             </div>
 
@@ -69,13 +54,12 @@ export default function Hero() {
               <span className="text-[var(--accent)]">Evaluated With Real Metrics.</span>
             </h1>
 
-            {/* Exact Proof Line under headline */}
+            {/* De-duplicated Hero Subheadline */}
             <p className="text-base sm:text-lg md:text-xl text-slate-200 leading-relaxed max-w-2xl font-normal">
-              Built and deployed an AQI forecasting system: 4-model ensemble, R² 0.81
-              (Day 1) on a time-based Delhi hold-out vs 0.38 for a naive persistence baseline.
+              Undergraduate AI/ML engineer building leak-free predictive pipelines, low-level systems simulations, and production cloud APIs benchmarked against strict empirical baselines.
             </p>
 
-            {/* Buttons: Resume, LinkedIn, GitHub, Email */}
+            {/* Buttons: Projects, Resume, LinkedIn, GitHub */}
             <div className="flex flex-wrap items-center gap-3 pt-2">
               <button
                 onClick={() => scrollTo("projects")}
@@ -116,31 +100,6 @@ export default function Hero() {
               >
                 <GithubIcon size={16} className="text-[var(--accent)]" /> GitHub
               </a>
-
-              <button
-                onClick={handleEmailClick}
-                className="btn-secondary cursor-pointer"
-                id="hero-cta-email"
-                aria-label={`Email ${contactDetails.email}`}
-                title="Click to copy email & open mail client"
-              >
-                {copiedEmail ? (
-                  <>
-                    <Check size={16} className="text-emerald-400" />
-                    <span className="text-emerald-400 font-semibold">Copied!</span>
-                  </>
-                ) : (
-                  <>
-                    <Mail size={16} /> Email
-                  </>
-                )}
-              </button>
-            </div>
-
-            {/* Direct Email Meta Line */}
-            <div className="flex items-center gap-2 pt-2 text-xs sm:text-sm text-slate-300 font-mono">
-              <Mail size={14} className="text-[var(--accent)]" />
-              <span>{contactDetails.email}</span>
             </div>
           </div>
 
@@ -168,8 +127,8 @@ export default function Hero() {
                 </span>
               </div>
 
-              {/* Real 4-Model Definition Code Snippet */}
-              <div className="p-3.5 rounded-xl bg-black/40 border border-white/5 font-mono text-[11px] leading-5 text-slate-300 space-y-1">
+              {/* Real 4-Model Definition Code Snippet with horizontal overflow handling */}
+              <div className="p-3.5 rounded-xl bg-black/40 border border-white/5 font-mono text-[11px] leading-5 text-slate-300 space-y-1 overflow-x-auto whitespace-nowrap">
                 <p className="text-slate-500"># 4-Model Weighted Ensemble</p>
                 <p>
                   <span className="text-white">RandomForest</span>(n_estimators=120, max_depth=10)
@@ -188,24 +147,28 @@ export default function Hero() {
                 </p>
               </div>
 
-              {/* Benchmark Numbers */}
-              <div
-                className="mt-4 p-3.5 rounded-xl bg-white/[0.03] border border-white/10 flex items-center justify-between cursor-help"
-                title="Metric: R² (Coefficient of Determination) | Split: Chronological 80/20 Delhi holdout (~70 days test) | Baseline: 0.38 naive persistence (tomorrow = today)"
-              >
-                <div>
-                  <p className="text-xs font-mono uppercase text-slate-400">Day 1 Test Score</p>
-                  <p className="text-xs text-slate-300">vs 0.38 naive baseline</p>
+              {/* Benchmark Numbers without native title tooltip - clearly styled visible subtext */}
+              <div className="mt-4 p-4 rounded-xl bg-white/[0.03] border border-white/10">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-xs font-mono uppercase text-slate-400 font-semibold tracking-wider">
+                      Day 1 Test Score
+                    </p>
+                    <p className="text-xs font-mono text-slate-300 mt-0.5">
+                      vs 0.38 Naive Persistence Baseline
+                    </p>
+                  </div>
+                  <div className="text-right">
+                    <span className="text-3xl font-black font-mono text-[var(--accent)]">0.81</span>
+                    <span className="text-xs font-mono text-slate-400 ml-1">R²</span>
+                  </div>
                 </div>
-                <div className="text-right">
-                  <span className="text-3xl font-black font-mono text-[var(--accent)]">0.81</span>
-                  <span className="text-xs font-mono text-slate-400 ml-1">R²</span>
+                <div className="mt-3 pt-3 border-t border-white/5 flex flex-col sm:flex-row sm:items-center justify-between gap-1 text-[11px] font-mono text-slate-400">
+                  <span>Validation Protocol:</span>
+                  <span className="text-emerald-400 font-medium">
+                    Chronological 80/20 Delhi Holdout (~281 Train / ~70 Test)
+                  </span>
                 </div>
-              </div>
-
-              <div className="mt-3 text-[11px] font-mono text-slate-400 flex items-center justify-between px-1">
-                <span>Validation: Chronological (No Leakage)</span>
-                <span className="text-emerald-400">~281 Train / ~70 Test</span>
               </div>
             </div>
           </div>

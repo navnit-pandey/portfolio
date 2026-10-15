@@ -6,7 +6,7 @@ export const contactDetails = {
   github: "https://github.com/navnit-pandey",
   linkedin: "https://www.linkedin.com/in/navnit-pandey",
   university: "Lovely Professional University (LPU)",
-  degree: "B.Tech in Artificial Intelligence & Machine Learning",
+  degree: "B.Tech in Computer Science & Engineering (AI & ML)",
   resumePath: "/Navnit_Pandey_Resume.pdf",
 };
 
@@ -17,9 +17,10 @@ export const airqProject = {
   shortTitle: "AirQ Predict",
   category: "ML / Full-Stack",
   featured: true,
-  tagline: "End-to-end multi-pollutant AQI forecasting pipeline with live REST API and interactive dashboard.",
-  problem:
-    "Urban air quality fluctuates rapidly based on cross-pollutant chemical dynamics. Predicting multi-day trends requires modeling non-linear atmospheric interactions without temporal lookahead bias.",
+  tagline:
+    "End-to-end multi-pollutant AQI forecasting pipeline with a leak-free 4-model ensemble, live Flask REST API, and interactive Next.js dashboard.",
+  architectureCallout:
+    "Models non-linear cross-pollutant dynamics using an inverse-MAE weighted ensemble (Random Forest, Gradient Boosting, Extra Trees, Ridge). Evaluated on a strict chronological 80/20 Delhi holdout with zero temporal lookahead.",
   description:
     "A production-grade machine learning system that ingests atmospheric pollutant streams (PM2.5, PM10, NO₂, SO₂, CO, O₃), computes US EPA standard index breakpoints, and forecasts 5-day AQI trends. Deployed with a Flask REST API backend on Render and a Next.js (TypeScript) dashboard on Vercel.",
   deployedModelNote:
@@ -27,7 +28,7 @@ export const airqProject = {
   architecture:
     "RandomForest(n_estimators=120, max_depth=10), GradientBoosting(n_estimators=100, max_depth=5, learning_rate=0.05), ExtraTrees(n_estimators=120, max_depth=10), Ridge(alpha=1.0), blended by inverse-MAE weights on time-series split.",
   keyComparison:
-    "Day 1 R² 0.81 (hold-out test set) vs 0.38 for naive persistence baseline (predicting tomorrow = today).",
+    "Day 1 R² 0.81 vs 0.38 Naive Persistence Baseline (Chronological 80/20 Holdout)",
   limitations:
     "Single city (Delhi dataset), ~70-day single-season holdout window. Ensemble weights were calibrated on the test split; subsequent iterations will enforce a strictly disjoint train/validation/test holdout.",
   facts: [
@@ -73,7 +74,7 @@ export const airqProject = {
   ],
   githubUrl: "https://github.com/navnit-pandey/AQI-prediction-model",
   liveUrl: "https://aqi-prediction-model-one.vercel.app/",
-  demoNote: "Free-tier backend on Render may take ~45–60s to wake up on initial request.",
+  deploymentBadge: "Live Cloud Deployment · Vercel + Render",
   screenshotPath: "/airq-preview.png",
 };
 
@@ -83,11 +84,11 @@ export const resourceAllocatorProject = {
   shortTitle: "OS Resource Allocator",
   category: "Systems & Algorithms",
   featured: false,
-  tagline: "Interactive OS simulation modeling CPU contention, memory paging, and dynamic starvation prevention.",
-  objective:
-    "Simulate and visualize operating system process scheduling under heavy CPU and memory contention, preventing low-priority process starvation.",
-  method:
-    "Dynamic Priority Scheduling with Aging Heuristics. Tracks CPU time-slices and memory allocation blocks; when high-priority tasks monopolize CPU cycles, the aging algorithm incrementally boosts starved process priorities.",
+  tagline:
+    "Interactive OS kernel scheduling simulator modeling CPU time-slice contention, memory paging, and dynamic starvation prevention.",
+  architectureCallout:
+    "Implements Dynamic Priority Scheduling with Aging Heuristics. Tracks CPU time-slices and memory allocation blocks in real time—automatically incrementing priority weights for waiting processes when high-priority tasks monopolize CPU cycles.",
+  metricBadge: "0 Starved Processes · Dynamic Aging Priority Boost",
   algorithm: "Dynamic Priority Scheduling with Aging & Contention-Aware Paging",
   screenshotPath: "/scheduler-preview.png",
   techStack: ["JavaScript (ES6)", "DOM API", "HTML5 Canvas", "CSS3", "Systems Algorithms"],
@@ -107,14 +108,15 @@ export const gestureCarProject = {
   shortTitle: "Embedded Gesture Vehicle",
   category: "Hardware & Embedded Systems",
   featured: false,
-  tagline: "Microcontroller circuit design, sensor signal conditioning, and differential PWM motor drive simulated in Proteus.",
-  objective:
-    "Translate human hand tilt gestures into multi-directional vehicle locomotion without mechanical switches or physical joysticks.",
-  method:
-    "3-Axis accelerometer analog signal acquisition (ADXL335) conditioned through an ATmega328P microcontroller ADC. A firmware deadband filter (±30 LSB) suppresses hand jitter before mapping tilt angles to differential PWM duty cycles for an L293D dual H-bridge motor driver.",
+  tagline:
+    "ATmega328P microcontroller circuit design, analog accelerometer signal conditioning, and differential PWM motor drive simulated in Proteus VSM.",
+  architectureCallout:
+    "Acquires 3-axis analog tilt signals (ADXL335) via ATmega328P ADC channels. Applies a firmware deadband filter (±30 LSB) to suppress hand tremor before mapping tilt vectors to differential PWM duty cycles across an L293D dual H-bridge driver.",
+  metricBadge: "±30 LSB Deadband Filter · Differential PWM Drive",
   statusLine: "Proteus Circuit Simulation Prototype (VSM Tested)",
   schematicPath: "/gesture-schematic.svg",
   techStack: ["Arduino (C/C++)", "Proteus Simulation", "L293D Motor Driver", "ADXL335 Sensor", "Circuit Design"],
+  githubUrl: "https://github.com/navnit-pandey",
   evidence: "Validated in Proteus VSM simulation with transient inductive protection and steady-state PWM duty cycle control.",
   highlights: [
     "Comprehensive Proteus circuit schematic simulation prior to PCB design",
@@ -172,36 +174,42 @@ export const skillCategories = [
   },
 ];
 
-// ─── Merged Engineering Approach (6 Compact Steps) ─────────────────────
+// ─── 6-Step Engineering Methodology ──────────────────────────────────
 export const processSteps = [
   {
     num: "01",
-    title: "Understand the Problem",
-    description: "Define boundary conditions, domain constraints, and baseline expectations before writing code.",
+    title: "Define Constraints & Failure Modes",
+    description:
+      "Establish system boundary conditions, latency/memory budgets, and domain constraints before writing implementation code.",
   },
   {
     num: "02",
-    title: "Investigate Data & Systems",
-    description: "Inspect temporal distributions, missing values, pollutant noise, and potential leakage points.",
+    title: "Audit Data & Signal Integrity",
+    description:
+      "Inspect temporal distributions, sensor jitter, missing values, and potential lookahead leakage points at the ingestion layer.",
   },
   {
     num: "03",
-    title: "Build the Simplest Solution",
-    description: "Establish a naive persistence baseline (tomorrow = today) to measure true engineering lift.",
+    title: "Benchmark Against Naive Baselines",
+    description:
+      "Build a deterministic baseline (such as naive persistence or FIFO scheduling) first to measure true algorithmic lift.",
   },
   {
     num: "04",
-    title: "Evaluate & Measure Rigorously",
-    description: "Enforce strict chronological splits (no lookahead leakage) to measure Day-1 through Day-5 R² and MAE.",
+    title: "Enforce Leak-Free Validation",
+    description:
+      "Apply strict chronological holdouts for time-series ML and high-contention stress tests for systems simulations.",
   },
   {
     num: "05",
-    title: "Diagnose & Document Limitations",
-    description: "Analyze residual errors and single-season constraints openly rather than concealing them.",
+    title: "Surface Edge Cases Transparently",
+    description:
+      "Document horizon decay, hardware deadbands, and dataset constraints openly rather than hiding behind training accuracy.",
   },
   {
     num: "06",
-    title: "Iterate, Ensemble & Deploy",
-    description: "Engineer rolling lag features, blend models by inverse-MAE weighting, and ship via live REST APIs.",
+    title: "Ship End-to-End Runtimes",
+    description:
+      "Package validated models and algorithms behind lightweight REST APIs and interactive, accessible web interfaces.",
   },
 ];

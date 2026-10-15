@@ -9,8 +9,8 @@ const accentColors = ["var(--accent)", "#38bdf8", "#fbbf24"];
 export default function Skills() {
   return (
     <section
-      id="skills"
-      className="section relative"
+      id="stack"
+      className="section relative scroll-mt-20"
       style={{ borderTop: "1px solid var(--border)" }}
     >
       <div className="container-custom">

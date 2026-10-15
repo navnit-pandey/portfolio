@@ -12,9 +12,7 @@ import {
   Sparkles,
   CheckCircle2,
   AlertTriangle,
-  Clock,
   Layers,
-  ArrowRight,
   ShieldCheck,
   Activity,
   FileCode2,
@@ -34,7 +32,7 @@ export default function Projects() {
   return (
     <section
       id="projects"
-      className="section relative"
+      className="section relative scroll-mt-20"
       style={{ borderTop: "1px solid var(--border)" }}
     >
       <div className="container-custom">
@@ -53,7 +51,7 @@ export default function Projects() {
         {/* ─────────────────────────────────────────────────────────────
             1. Flagship Card: AirQ Predict (Streamlined First View)
         ────────────────────────────────────────────────────────────── */}
-        <div className="card-featured p-6 sm:p-10 md:p-12 relative overflow-hidden mb-14" id="project-airq">
+        <div className="card-featured p-5 sm:p-8 md:p-9 relative overflow-hidden mb-10" id="project-airq">
           {/* Ambient Glow */}
           <div
             className="absolute -right-20 -bottom-20 w-[500px] h-[500px] pointer-events-none rounded-full"
@@ -62,39 +60,41 @@ export default function Projects() {
             }}
           />
 
-          <div className="relative z-10 space-y-8">
+          <div className="relative z-10 space-y-5 sm:space-y-6">
             {/* Header: Title, Category, Status */}
-            <div className="flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-white/10">
+            <div className="flex flex-wrap items-center justify-between gap-4 pb-5 border-b border-white/10">
               <div>
                 <span className="tag-accent text-xs mb-2 inline-flex items-center gap-1.5">
                   <Sparkles size={11} /> Flagship AI/ML Project
                 </span>
-                <h3 className="text-2xl sm:text-4xl font-extrabold text-white mt-1">
+                <h3 className="text-xl sm:text-3xl font-extrabold text-white mt-1">
                   {flagship.title}
                 </h3>
-                <p className="text-sm sm:text-base text-slate-300 mt-1">
+                <p className="text-sm sm:text-base text-slate-300 mt-1 max-w-3xl">
                   {flagship.tagline}
                 </p>
               </div>
               <div className="flex items-center gap-2">
-                <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-xs font-mono">
+                <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-xs font-mono font-medium">
                   <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                  Live Flask API (Render) + Next.js (Vercel)
+                  {flagship.deploymentBadge}
                 </span>
               </div>
             </div>
 
-            {/* Problem Statement */}
-            <div className="p-4 sm:p-5 rounded-xl bg-white/[0.02] border border-white/5">
-              <p className="text-xs font-mono uppercase text-slate-400 mb-1">Problem &amp; System Objective</p>
-              <p className="text-sm sm:text-base text-slate-200 leading-relaxed">
-                {flagship.problem}
+            {/* Architecture & Validation Callout Block (Single streamlined block) */}
+            <div className="p-3.5 sm:p-4 rounded-xl bg-white/[0.02] border border-white/5">
+              <p className="text-xs font-mono uppercase text-slate-400 mb-1 font-semibold tracking-wider">
+                Architecture &amp; Validation
+              </p>
+              <p className="text-xs sm:text-sm text-slate-200 leading-relaxed">
+                {flagship.architectureCallout}
               </p>
             </div>
 
-            {/* Visual Evidence: Real Live Dashboard Screenshot */}
+            {/* Visual Evidence: Real Live Dashboard Screenshot with Optimized Sizes & Priority */}
             <div className="rounded-2xl border border-white/10 bg-black/40 overflow-hidden shadow-2xl">
-              <div className="flex items-center justify-between px-4 py-2.5 bg-white/[0.03] border-b border-white/10 text-xs font-mono text-slate-400">
+              <div className="flex items-center justify-between px-4 py-2 bg-white/[0.03] border-b border-white/10 text-xs font-mono text-slate-400">
                 <div className="flex items-center gap-2">
                   <span className="w-2.5 h-2.5 rounded-full bg-red-500/80" />
                   <span className="w-2.5 h-2.5 rounded-full bg-yellow-500/80" />
@@ -105,38 +105,41 @@ export default function Projects() {
                   <Activity size={12} /> Live Production Interface
                 </span>
               </div>
-              <div className="relative w-full aspect-[16/9] max-h-[460px] bg-slate-950">
+              <div className="relative w-full aspect-[16/9] max-h-[360px] bg-slate-950">
                 <Image
                   src={flagship.screenshotPath}
                   alt="AirQ Predict Production Dashboard with live AQI metrics and 5-day multi-pollutant forecast"
                   fill
+                  sizes="(max-width: 1024px) 100vw, 900px"
                   className="object-cover object-top"
                   priority
                 />
               </div>
             </div>
 
-            {/* One Verified Result Banner */}
+            {/* Metric Badge: Day 1 R² 0.81 vs 0.38 Naive Persistence Baseline */}
             <div className="p-4 sm:p-5 rounded-xl bg-[rgba(163,230,53,0.06)] border border-[rgba(163,230,53,0.2)] flex flex-col sm:flex-row sm:items-center justify-between gap-3">
               <div className="flex items-center gap-3">
                 <div className="w-9 h-9 rounded-lg bg-[rgba(163,230,53,0.15)] flex items-center justify-center flex-shrink-0">
                   <ShieldCheck size={20} className="text-[var(--accent)]" />
                 </div>
                 <div>
-                  <span className="text-xs font-mono uppercase text-slate-400">Verified Empirical Metric</span>
+                  <span className="text-xs font-mono uppercase text-slate-400 font-semibold tracking-wider">
+                    Verified Empirical Metric
+                  </span>
                   <p className="text-sm sm:text-base font-bold text-white font-mono mt-0.5">
                     {flagship.keyComparison}
                   </p>
                 </div>
               </div>
               <span className="text-xs font-mono px-3 py-1 rounded bg-black/40 border border-white/10 text-slate-300 self-start sm:self-auto">
-                Chronological 80/20 Delhi Hold-Out
+                Chronological 80/20 Delhi Holdout
               </span>
             </div>
 
             {/* Tech Stack Chips */}
             <div className="flex flex-wrap gap-2 items-center">
-              <span className="text-xs font-mono uppercase text-slate-400 mr-2">Stack:</span>
+              <span className="text-xs font-mono uppercase text-slate-400 mr-2 font-semibold">Stack:</span>
               {flagship.techStack.map((tech) => (
                 <span key={tech} className="tag-pill text-xs">
                   {tech}
@@ -177,12 +180,6 @@ export default function Projects() {
                 {caseStudyOpen ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
               </button>
             </div>
-
-            {/* Free-tier backend wakeup note */}
-            <p className="text-xs font-mono text-slate-400 flex items-center gap-1.5 pt-1">
-              <Clock size={13} className="text-amber-400 flex-shrink-0" />
-              <span>{flagship.demoNote}</span>
-            </p>
 
             {/* ─────────────────────────────────────────────────────────────
                 Collapsible Technical Case Study (Behind Button)
@@ -280,7 +277,6 @@ export default function Projects() {
 
         {/* ─────────────────────────────────────────────────────────────
             2. Structured Secondary Projects: Scheduler & Gesture Vehicle
-            (Both strictly formatted: Objective → Method → Evidence → Links)
         ────────────────────────────────────────────────────────────── */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10 items-stretch">
           {/* Card 1: Resource Allocator */}
@@ -300,7 +296,7 @@ export default function Projects() {
                 <span className="tag-pill text-xs">{scheduler.category}</span>
               </div>
 
-              {/* Title & Tagline */}
+              {/* Title & Subtitle */}
               <div>
                 <h3 className="text-xl sm:text-2xl font-bold text-white mb-1.5">
                   {scheduler.title}
@@ -310,33 +306,28 @@ export default function Projects() {
                 </p>
               </div>
 
-              {/* 1. Objective */}
+              {/* Algorithm & Architecture (Single streamlined block, no redundant objective box) */}
               <div className="p-3.5 rounded-xl bg-white/[0.02] border border-white/5">
-                <p className="text-[11px] font-mono uppercase text-slate-400 mb-1">Objective</p>
+                <p className="text-[11px] font-mono uppercase text-slate-400 mb-1 font-semibold tracking-wider">
+                  Algorithm &amp; Architecture
+                </p>
                 <p className="text-xs sm:text-sm text-slate-200 leading-relaxed">
-                  {scheduler.objective}
+                  {scheduler.architectureCallout}
                 </p>
               </div>
 
-              {/* 2. Method */}
-              <div className="p-3.5 rounded-xl bg-white/[0.02] border border-white/5">
-                <p className="text-[11px] font-mono uppercase text-slate-400 mb-1">Method &amp; Algorithm</p>
-                <p className="text-xs sm:text-sm text-slate-200 leading-relaxed">
-                  {scheduler.method}
-                </p>
-              </div>
-
-              {/* 3. Evidence: Real Live Dashboard Screenshot */}
+              {/* Evidence: Simulation Dashboard Preview */}
               <div>
                 <div className="flex items-center justify-between text-[11px] font-mono text-slate-400 mb-2">
                   <span>Evidence: Live Simulation Dashboard</span>
-                  <span className="text-emerald-400">Contention Validated</span>
+                  <span className="text-emerald-400 font-medium">{scheduler.metricBadge}</span>
                 </div>
                 <div className="rounded-xl border border-white/10 overflow-hidden bg-black/40 relative aspect-[16/10]">
                   <Image
                     src={scheduler.screenshotPath}
                     alt="Adaptive Multiprogramming Resource Allocator live contention simulation dashboard"
                     fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
                     className="object-cover object-top hover:scale-105 transition-transform duration-300"
                   />
                 </div>
@@ -352,7 +343,7 @@ export default function Projects() {
               </div>
             </div>
 
-            {/* 4. Links */}
+            {/* Links */}
             <div
               className="flex flex-wrap items-center gap-3 pt-6 mt-8"
               style={{ borderTop: "1px solid var(--border)" }}
@@ -395,7 +386,7 @@ export default function Projects() {
                 <span className="tag-pill text-xs">{gesture.category}</span>
               </div>
 
-              {/* Title & Tagline */}
+              {/* Title & Subtitle */}
               <div>
                 <h3 className="text-xl sm:text-2xl font-bold text-white mb-1.5">
                   {gesture.title}
@@ -405,33 +396,28 @@ export default function Projects() {
                 </p>
               </div>
 
-              {/* 1. Objective */}
+              {/* Signal Path & Firmware Logic (Single streamlined block, no redundant objective box) */}
               <div className="p-3.5 rounded-xl bg-white/[0.02] border border-white/5">
-                <p className="text-[11px] font-mono uppercase text-slate-400 mb-1">Objective</p>
+                <p className="text-[11px] font-mono uppercase text-slate-400 mb-1 font-semibold tracking-wider">
+                  Signal Path &amp; Firmware Logic
+                </p>
                 <p className="text-xs sm:text-sm text-slate-200 leading-relaxed">
-                  {gesture.objective}
+                  {gesture.architectureCallout}
                 </p>
               </div>
 
-              {/* 2. Method */}
-              <div className="p-3.5 rounded-xl bg-white/[0.02] border border-white/5">
-                <p className="text-[11px] font-mono uppercase text-slate-400 mb-1">Method &amp; Circuit Logic</p>
-                <p className="text-xs sm:text-sm text-slate-200 leading-relaxed">
-                  {gesture.method}
-                </p>
-              </div>
-
-              {/* 3. Evidence: Proteus Circuit Schematic Specification */}
+              {/* Evidence: Proteus Circuit Schematic with Metric Badge */}
               <div>
                 <div className="flex items-center justify-between text-[11px] font-mono text-slate-400 mb-2">
-                  <span>Evidence: Proteus VSM Schematic Specification</span>
-                  <span className="text-[var(--accent)] font-semibold">{gesture.statusLine}</span>
+                  <span>Evidence: Proteus Schematic</span>
+                  <span className="text-[var(--accent)] font-semibold">{gesture.metricBadge}</span>
                 </div>
                 <div className="rounded-xl border border-white/10 overflow-hidden bg-black/40 relative aspect-[16/10] p-1">
                   <Image
                     src={gesture.schematicPath}
                     alt="Proteus VSM Circuit Schematic: ADXL335 sensor to ATmega328P to L293D dual motor driver"
                     fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
                     className="object-contain p-2 hover:scale-105 transition-transform duration-300"
                   />
                 </div>
@@ -458,16 +444,16 @@ export default function Projects() {
               )}
             </div>
 
-            {/* 4. Links & Actions */}
+            {/* Links & Actions */}
             <div
-              className="flex flex-wrap items-center justify-between gap-3 pt-6 mt-8"
+              className="flex flex-wrap items-center gap-3 pt-6 mt-8"
               style={{ borderTop: "1px solid var(--border)" }}
             >
               <a
                 href={gesture.schematicPath}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-secondary text-xs py-2 px-3.5 flex items-center gap-1.5"
+                className="btn-primary text-xs py-2 px-3.5 flex items-center gap-1.5"
                 id="gesture-schematic-link"
               >
                 <ExternalLink size={14} /> View Circuit Schematic (Full)

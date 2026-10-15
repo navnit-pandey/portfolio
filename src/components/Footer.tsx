@@ -12,13 +12,13 @@ export default function Footer() {
             </span>
             <span className="text-slate-600">·</span>
             <span className="text-sm text-slate-300">
-              B.Tech in AI &amp; ML · Lovely Professional University
+              B.Tech in Computer Science &amp; Engineering (AI &amp; ML) · Lovely Professional University
             </span>
           </div>
 
           {/* Center */}
           <p className="text-xs font-mono text-slate-400">
-            © 2026 Navnit Pandey. Open for Summer 2027 Internships.
+            © 2026 Navnit Pandey. Open for Summer 2028 Internships.
           </p>
 
           {/* Right */}

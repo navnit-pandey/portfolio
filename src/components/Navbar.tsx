@@ -6,30 +6,35 @@ import { GithubIcon, LinkedinIcon } from "@/components/icons";
 
 const navItems = [
   { label: "Projects", href: "#projects" },
-  { label: "Skills", href: "#skills" },
+  { label: "Stack", href: "#stack" },
   { label: "About", href: "#about" },
+  { label: "Methodology", href: "#methodology" },
   { label: "Contact", href: "#contact" },
 ];
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [active, setActive] = useState("home");
+  const [active, setActive] = useState("");
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 30);
 
-      const sections = ["contact", "about", "skills", "projects", "home"];
+      const sections = ["contact", "methodology", "about", "stack", "projects"];
       for (const id of sections) {
         const el = document.getElementById(id);
-        if (el && window.scrollY + 140 >= el.offsetTop) {
+        if (el && window.scrollY + 160 >= el.offsetTop) {
           setActive(id);
-          break;
+          return;
         }
+      }
+      if (window.scrollY < 200) {
+        setActive("");
       }
     };
 
+    handleScroll();
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -37,8 +42,14 @@ export default function Navbar() {
   const handleNavClick = (href: string) => {
     setMenuOpen(false);
     const id = href.replace("#", "");
+    if (!id) {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      return;
+    }
     const el = document.getElementById(id);
-    if (el) el.scrollIntoView({ behavior: "smooth" });
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth" });
+    }
   };
 
   return (
@@ -55,35 +66,44 @@ export default function Navbar() {
         }}
       >
         <div className="container-custom flex items-center justify-between h-20">
-          {/* Wordmark */}
-          <button
-            onClick={() => handleNavClick("#home")}
-            className="flex items-center gap-3 group text-left cursor-pointer"
-            aria-label="Go to top"
+          {/* Left Brand Mark */}
+          <a
+            href="#"
+            onClick={(e) => {
+              e.preventDefault();
+              handleNavClick("#");
+            }}
+            className="flex items-center gap-3 group text-left cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] rounded-lg p-1"
+            aria-label="Navnit Pandey — Return to top"
           >
-            <span className="font-extrabold text-xl tracking-tight text-white group-hover:text-[var(--accent)] transition-colors">
-              Navnit<span className="text-[var(--accent)]">.</span>
+            <span className="font-extrabold text-lg sm:text-xl tracking-tight text-white group-hover:text-[var(--accent)] transition-colors">
+              Navnit Pandey
             </span>
-            <span className="tag-accent text-xs hidden sm:inline-flex">
-              AI/ML Engineer
-            </span>
-          </button>
+          </a>
 
-          {/* Desktop Nav Links (Streamlined to 4 items) */}
-          <div className="hidden md:flex items-center gap-8">
-            {navItems.map((item) => (
-              <button
-                key={item.label}
-                onClick={() => handleNavClick(item.href)}
-                className={`nav-link text-sm font-medium transition-colors cursor-pointer ${
-                  active === item.href.replace("#", "")
-                    ? "active text-[var(--accent)] font-semibold"
-                    : "text-slate-300 hover:text-white"
-                }`}
-              >
-                {item.label}
-              </button>
-            ))}
+          {/* Desktop Nav Links (Projects, Stack, About, Methodology, Contact) */}
+          <div className="hidden md:flex items-center gap-7 lg:gap-8">
+            {navItems.map((item) => {
+              const sectionId = item.href.replace("#", "");
+              const isActive = active === sectionId;
+              return (
+                <a
+                  key={item.label}
+                  href={item.href}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleNavClick(item.href);
+                  }}
+                  className={`nav-link text-sm font-medium transition-colors cursor-pointer py-1 ${
+                    isActive
+                      ? "active text-[var(--accent)] font-semibold"
+                      : "text-slate-300 hover:text-white"
+                  }`}
+                >
+                  {item.label}
+                </a>
+              );
+            })}
           </div>
 
           {/* Right Action Icons (Resume, GitHub, LinkedIn) */}
@@ -159,19 +179,27 @@ export default function Navbar() {
             onClick={(e) => e.stopPropagation()}
           >
             <div className="container-custom flex flex-col gap-2">
-              {navItems.map((item) => (
-                <button
-                  key={item.label}
-                  onClick={() => handleNavClick(item.href)}
-                  className={`text-left px-4 py-3 rounded-xl text-sm font-semibold transition-all ${
-                    active === item.href.replace("#", "")
-                      ? "text-[var(--accent)] bg-[rgba(163,230,53,0.08)]"
-                      : "text-slate-300 hover:bg-white/5"
-                  }`}
-                >
-                  {item.label}
-                </button>
-              ))}
+              {navItems.map((item) => {
+                const sectionId = item.href.replace("#", "");
+                const isActive = active === sectionId;
+                return (
+                  <a
+                    key={item.label}
+                    href={item.href}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleNavClick(item.href);
+                    }}
+                    className={`text-left px-4 py-3 rounded-xl text-sm font-semibold transition-all ${
+                      isActive
+                        ? "text-[var(--accent)] bg-[rgba(163,230,53,0.08)]"
+                        : "text-slate-300 hover:bg-white/5"
+                    }`}
+                  >
+                    {item.label}
+                  </a>
+                );
+              })}
               <div
                 className="pt-4 mt-2 border-t flex flex-col gap-2"
                 style={{ borderColor: "var(--border)" }}
